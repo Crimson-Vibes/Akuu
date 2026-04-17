@@ -28,9 +28,9 @@ body {
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(25px);
   border-radius: 30px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* HEADER */
@@ -82,6 +82,13 @@ body {
   margin-left: auto;
 }
 
+/* IMAGE */
+.msg img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 5px;
+}
+
 /* BUTTON */
 .chat-footer {
   padding: 10px;
@@ -97,19 +104,7 @@ button {
   cursor: pointer;
 }
 
-/* GAME */
-.game-box {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.choice {
-  font-size: 28px;
-  margin: 8px;
-  cursor: pointer;
-}
-
-/* ANIM */
+/* ANIMATION */
 @keyframes pop {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
