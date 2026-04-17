@@ -124,6 +124,16 @@ button {
 .typing {
   display: flex;
   gap: 5px;
+  align-items: center;
+  width: fit-content;
+}
+
+.left.typing {
+  margin-right: auto;
+}
+
+.right.typing {
+  margin-left: auto;
 }
 
 .typing span {
