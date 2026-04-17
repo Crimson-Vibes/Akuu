@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Birthday Quest 💖</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<!-- ================= LOADING SCREEN ================= -->
+<div id="loading">
+  <h1>Preparing Something Magical...</h1>
+  <div id="intro-timer">3</div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div id="mainContent">
+
+  <div class="card">
+
+    <h2>🎀 Welcome to Her Birthday Quest 🎀</h2>
+    <p>Win all 3 games to unlock your surprise 💌</p>
+
+    <!-- GAME 1 -->
+    <div class="game" id="game1">
+      <h3>Game 1: Rock Paper Scissors</h3>
+
+      <button onclick="playRPS('rock')">✊</button>
+      <button onclick="playRPS('paper')">✋</button>
+      <button onclick="playRPS('scissors')">✌️</button>
+
+      <p id="rpsResult"></p>
+    </div>
+
+    <!-- GAME 2 -->
+    <div class="game hidden" id="game2">
+      <h3>Game 2: Tic Tac Toe (Win to continue)</h3>
+      <div id="board"></div>
+      <p id="tttResult"></p>
+    </div>
+
+    <!-- GAME 3 -->
+    <div class="game hidden" id="game3">
+      <h3>Game 3: Heart Click Battle 💖</h3>
+      <div id="heartGame"></div>
+      <p id="heartScore">Score: 0</p>
+    </div>
+
+    <!-- FINAL -->
+    <div class="game hidden" id="final">
+      <h2>🎉 You did it 🎉</h2>
+      <p>A surprise is waiting for you… 💌</p>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
