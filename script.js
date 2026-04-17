@@ -253,7 +253,7 @@ function showTyping(item){
   btn.disabled = true;
 
   const t = document.createElement("div");
-  t.className = "msg left typing";
+  t.className = "msg " + item.side + " typing";
   t.innerHTML = "<span></span><span></span><span></span>";
 
   chat.appendChild(t);
