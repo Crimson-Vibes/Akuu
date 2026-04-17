@@ -93,7 +93,7 @@ const flow = [
 { type: "msg", text: "Haan?", side: "right" },
 
 { type: "msg", text: "Tu free hai na abhi?", side: "left" },
-{ type: "msg", text: "Haan bolo naa 😏", side: "right" },
+{ type: "msg", text: "Haan bolo na 😌", side: "right" },
 
 { type: "msg", text: "Bas… kuch bolna tha", side: "left" },
 
@@ -205,6 +205,8 @@ mere hi paas wapas la deti hai 😌💖`,
 { type: "msg", text: "Yusss… kyuki tu deserve karti hai meri jaanemann 💖", side: "left" },
 { type: "msg", text: "Baaki baatein fir actual DM mein kar lenge 😌", side: "left" },
 { type: "msg", text: "Love youuu… muaaahhh 😘💋💖", side: "left" }
+
+];
 
 // 🎵 BUTTON CLICK
 btn.onclick = () => {
