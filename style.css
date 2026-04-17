@@ -32,13 +32,13 @@ body {
 .hearts span {
   position: absolute;
   bottom: -40px;
-  animation: heartFloat linear forwards;
+  animation: floatUp 6s linear forwards;
 }
 
 #balloons span {
   position: fixed;
   bottom: -100px;
-  animation: float 12s ease-in forwards;
+  animation: floatUp 10s linear forwards;
 }
 
 .chat-container {
@@ -85,8 +85,9 @@ body {
   padding: 10px 14px;
   margin: 8px 0;
   border-radius: 18px;
-  animation: pop 0.3s ease;
   color: white;
+  animation: pop 0.3s ease;
+  white-space: pre-line;
 }
 
 .left {
@@ -101,8 +102,7 @@ body {
 .msg img {
   width: 100%;
   border-radius: 15px;
-  margin-top: 5px;
-  max-height: 300px;
+  max-height: 320px;
   object-fit: cover;
   display: block;
 }
@@ -120,11 +120,10 @@ button {
   color: white;
 }
 
-/* typing indicator */
+/* typing */
 .typing {
   display: flex;
-  gap: 4px;
-  padding: 10px 14px;
+  gap: 5px;
 }
 
 .typing span {
@@ -135,23 +134,22 @@ button {
   animation: blink 1s infinite;
 }
 
-.typing span:nth-child(2) { animation-delay: 0.2s; }
-.typing span:nth-child(3) { animation-delay: 0.4s; }
+.typing span:nth-child(2){animation-delay:0.2s}
+.typing span:nth-child(3){animation-delay:0.4s}
 
 @keyframes blink {
-  0%,100% { opacity: 0.2; }
-  50% { opacity: 1; }
+  0%,100%{opacity:0.2}
+  50%{opacity:1}
 }
 
 @keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from{transform:scale(0.8);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
-@keyframes heartFloat {
-  to { transform: translateY(-110vh); opacity: 0; }
-}
-
-@keyframes float {
-  100% { transform: translateY(-110vh); opacity: 0; }
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
 }
