@@ -63,6 +63,7 @@ const flow = [
 { type: "msg", text: "Kabhi kabhi tu thodi zyada hi acchi lagti hai 😏", side: "left" },
 
 { type: "msg", text: "Like this…", side: "left" },
+
 { type: "img", src: "https://lh3.googleusercontent.com/d/1H_Ktchha-71lEVaJ4-7eq1ZwWaImDYe_", side: "left" },
 
 { type: "msg", text: "Ye wala toh main hu hi 😌💅", side: "right" },
@@ -155,159 +156,175 @@ thoda sa mujhe
 mere hi paas wapas la deti hai 😌💖`,
   side: "left"
 },
+
 { type: "msg", text: "Bas… itna hi tha 😌", side: "left" },
 { type: "msg", text: "Par jo bhi tha… dil se tha 😌💖", side: "left" },
- { type: "msg", text: "Thank youuu 😭💖 ", side: "right" },
- { type: "msg", text: "I love youu diii ", side: "right" },
-   { type: "msg", text: "Ab mein chalti hoonnn...", side: "right" },
+
+{ type: "msg", text: "Thank youuu 😭💖 ", side: "right" },
+{ type: "msg", text: "I love youu diii ", side: "right" },
+{ type: "msg", text: "Ab mein chalti hoonnn...", side: "right" },
+
 { type: "msg", text: "RUK JA 😭", side: "left" },
 { type: "msg", text: "Behennn ek last cheez 😌💖", side: "left" },
 
 { type: "msg", text: "Ab kya hua didii?? 😭", side: "right" },
-  { type: "msg", text: "Aaj rulaakar maanoge kya aap? 😭", side: "right" },
+{ type: "msg", text: "Aaj rulaakar maanoge kya aap? 😭", side: "right" },
+
 { type: "msg", text: "Ruk jaaaooo behennn.. 😭💖", side: "left" },
 { type: "msg", text: "Sirf ek last baat", side: "left" },
 
 { type: "msg", text: "Haan bolo di.. 😭", side: "right" },
 { type: "msg", text: "Sun rahi hoon", side: "right" },
+
 { type: "msg", text: "Happy Birthdayyy Meri Butterfly 💖", side: "left" },
 
 { type: "msg", text: "Sach bolu… tujhe wish karna bas ek formality nahi lagta hai", side: "left" },
 { type: "msg", text: "Infact kaafiii jyaada special feel hota hai 😌", side: "left" },
-{ type: "msg", text: "I guess tumhe dikh raha hei mera mehnat .. sirf tumhare liyeee..", side: "left" },
+
 { type: "msg", text: "Aww 😭💖", side: "right" },
+
 { type: "msg", text: "Tu na… sirf dost nahi hai meri", side: "left" },
 { type: "msg", text: "Tu woh insaan hai jisse main sabse pehle sab kuch share karti hoon", side: "left" },
+
 { type: "msg", text: "Especially jo main likhti hoon…", side: "left" },
+
 { type: "msg", text: "Aur tu har baar itna genuinely sun leti hai na", side: "left" },
+
 { type: "msg", text: "Ki sab kuch aur zyada special lagne lagta hai 💖", side: "left" },
 
 { type: "msg", text: "Heheh 😌💅", side: "right" },
-
-{ type: "msg", text: "Sach mein… mujhe nahi pata main itna likh paati ya nahi", side: "left" },
-{ type: "msg", text: "Agar tu nahi hoti toh", side: "left" },
 
 { type: "msg", text: "Tu sirf support nahi karti… tu feel karti hai", side: "left" },
 
 { type: "msg", text: "Aur shayad isi liye…", side: "left" },
 { type: "msg", text: "Tu meri favourite insaan hai 💖", side: "left" },
+
 { type: "msg", text: "Stoppp 😭💖", side: "right" },
+
 { type: "msg", text: "Isiliye… aaj ke din tu bas khush rehna", side: "left" },
 { type: "msg", text: "Baaki sab handle ho jayega 😌", side: "left" },
+
 { type: "msg", text: "Aur haan…", side: "left" },
 { type: "msg", text: "Jitna tu mujhe appreciate karti hai na", side: "left" },
+
 { type: "msg", text: "Usse kahin zyada pyaar aur appreciation tu deserve karti hai 💖", side: "left" },
+
 { type: "msg", text: "Isiliye tumhare liye… 😌💖", side: "left" },
 { type: "msg", text: "Biotech wali ho ke bhi main 😭🧪", side: "left" },
 { type: "msg", text: "Apni CSE wali number 1 cutie ke liye coding kar rahi hoon 😏💻💖", side: "left" },
+
 { type: "msg", text: "Itna sab mere liye 🥺", side: "right" },
+
 { type: "msg", text: "Yusss… kyuki tu deserve karti hai meri jaanemann 💖", side: "left" },
+
 { type: "msg", text: "Baaki baatein fir actual DM mein kar lenge 😌", side: "left" },
+
 { type: "msg", text: "Love youuu… muaaahhh 😘💋💖", side: "left" }
 
-
+]; // ✅ FIXED COMMA + SAFE CLOSE
 
 btn.onclick = () => {
   if(!started){
-    music.volume=0.3;
+    music.volume = 0.3;
     music.play().catch(()=>{});
     startEffects();
-    started=true;
+    started = true;
   }
   next();
 };
 
 function next(){
-  if(step>=flow.length){
-    btn.innerText="Replay 🔁";
-    btn.onclick=()=>location.reload();
+  if(step >= flow.length){
+    btn.innerText = "Replay 🔁";
+    btn.onclick = () => location.reload();
     return;
   }
 
-  let item=flow[step];
+  const item = flow[step];
 
-  if(item.type==="msg") showTyping(item);
-  if(item.type==="img") showImg(item);
-  if(item.type==="voice") showVoice(item);
+  if(item.type === "msg") showTyping(item);
+  if(item.type === "img") showImg(item);
+  if(item.type === "voice") showVoice(item);
 
   step++;
 }
 
 function showTyping(item){
-  btn.disabled=true;
+  btn.disabled = true;
 
-  let t=document.createElement("div");
-  t.className="msg left typing";
-  t.innerHTML="<span></span><span></span><span></span>";
+  const t = document.createElement("div");
+  t.className = "msg left typing";
+  t.innerHTML = "<span></span><span></span><span></span>";
 
   chat.appendChild(t);
-  chat.scrollTop=chat.scrollHeight;
+  chat.scrollTop = chat.scrollHeight;
 
-  setTimeout(()=>{
+  setTimeout(() => {
     t.remove();
 
-    let m=document.createElement("div");
-    m.className="msg "+item.side;
-    m.innerText=item.text;
+    const m = document.createElement("div");
+    m.className = "msg " + item.side;
+    m.innerText = item.text;
 
     chat.appendChild(m);
-    chat.scrollTop=chat.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
 
-    btn.disabled=false;
-  },1200);
+    btn.disabled = false;
+  }, 1200);
 }
 
 function showImg(item){
-  let m=document.createElement("div");
-  m.className="msg "+item.side;
-  m.innerHTML=`<img src="${item.src}">`;
+  const m = document.createElement("div");
+  m.className = "msg " + item.side;
+  m.innerHTML = `<img src="${item.src}">`;
 
   chat.appendChild(m);
-  chat.scrollTop=chat.scrollHeight;
+  chat.scrollTop = chat.scrollHeight;
 }
 
 function showVoice(item){
-  btn.disabled=true;
+  btn.disabled = true;
 
-  let box=document.createElement("div");
-  box.className="msg left";
+  const box = document.createElement("div");
+  box.className = "msg left";
 
-  let b=document.createElement("button");
-  b.innerText="Play ▶️";
+  const b = document.createElement("button");
+  b.innerText = "Play ▶️";
 
-  box.innerText="Sunna dhyaan se 😌🎧";
+  box.innerText = "Sunna dhyaan se 😌🎧";
   box.appendChild(document.createElement("br"));
   box.appendChild(b);
 
   chat.appendChild(box);
 
-  b.onclick=()=>{
+  b.onclick = () => {
     music.pause();
-    voice.src=item.src;
+    voice.src = item.src;
+    voice.currentTime = 0;
     voice.play();
 
-    box.innerText="Sun rahi hai na… 😌💖";
+    box.innerText = "Sun rahi hai na… 😌💖";
 
-    voice.onended=()=>{
+    voice.onended = () => {
       music.play().catch(()=>{});
-      box.innerText="Bas… samajh ja 😌💖";
-      btn.disabled=false;
+      box.innerText = "Bas… samajh ja 😌💖";
+      btn.disabled = false;
     };
   };
 }
 
 function startEffects(){
-  setInterval(()=>{
-    let h=document.createElement("span");
-    h.innerText="💖";
-    h.style.left=Math.random()*100+"vw";
+  setInterval(() => {
+    const h = document.createElement("span");
+    h.innerText = "💖";
+    h.style.left = Math.random() * 100 + "vw";
     hearts.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
+    setTimeout(() => h.remove(), 6000);
 
-    let b=document.createElement("span");
-    b.innerText="🎈";
-    b.style.left=Math.random()*100+"vw";
+    const b = document.createElement("span");
+    b.innerText = "🎈";
+    b.style.left = Math.random() * 100 + "vw";
     balloons.appendChild(b);
-    setTimeout(()=>b.remove(),10000);
-  },500);
+    setTimeout(() => b.remove(), 10000);
+  }, 500);
 }
