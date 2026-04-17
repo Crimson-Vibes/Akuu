@@ -1,41 +1,42 @@
 const chat = document.getElementById("chatBody");
 const btn = document.getElementById("nextBtn");
 const status = document.getElementById("status");
+const voice = document.getElementById("voiceNote");
+const music = document.getElementById("bgMusic");
 
 let step = 0;
 
-// 💬 FLOW (WITH SAMPLE TEXT + IMAGES)
+// 💬 FLOW
 const flow = [
-
   { type: "msg", text: "Aaj ka din thoda special hai… 😏", side: "left" },
-
   { type: "msg", text: "Kyu? 😌", side: "right" },
 
   { type: "msg", text: "Arey patience… sab ek saath thodi batate hai 💖", side: "left" },
 
-  { type: "img", src: "img1.jpg", side: "left" },
+  { type: "msg", text: "Ye dekh… bilkul tu 😭💖", side: "left" },
+  { type: "img", src: "pic.gif", side: "left" },
 
   { type: "msg", text: "Waise ek baat bolu… 😌", side: "left" },
-
-  { type: "msg", text: "Kabhi kabhi na… tu thodi zyada hi acchi lagti hai 😏", side: "left" },
-
-  { type: "msg", text: "Matlab… normal se thoda zyada 😌💖", side: "right" },
-
-  { type: "img", src: "img2.jpg", side: "right" },
+  { type: "msg", text: "Kabhi kabhi tu thodi zyada hi acchi lagti hai 😏", side: "left" },
 
   { type: "msg", text: "Par ruk… ek cheez sun pehle 😏🎧", side: "left" },
 
   { type: "voice" },
 
   { type: "msg", text: "Ab samajh aaya main kya bolna chah raha tha? 🥺💌", side: "left" },
-
   { type: "msg", text: "Bas… aaj ke din tu bas khush rehna 💖", side: "right" },
 
   { type: "msg", text: "Aur haan… thodi si yaad mujhe bhi kar lena 😏", side: "left" }
-
 ];
 
-btn.onclick = nextMessage;
+// 🔥 IMPORTANT FIX
+btn.onclick = () => {
+  if (step === 0) {
+    music.volume = 0.3;
+    music.play().catch(()=>{});
+  }
+  nextMessage();
+};
 
 function nextMessage() {
   if (step >= flow.length) return;
@@ -67,7 +68,7 @@ function showMessage(item) {
   }, 1200);
 }
 
-// 🖼️ IMAGE
+// 🖼️ GIF
 function showImage(item) {
   const msg = document.createElement("div");
   msg.className = "msg " + item.side;
@@ -78,7 +79,7 @@ function showImage(item) {
   chat.scrollTop = chat.scrollHeight;
 }
 
-// 🎧 VOICE
+// 🎧 VOICE NOTE
 function playVoice() {
   btn.disabled = true;
 
@@ -94,12 +95,13 @@ function playVoice() {
   chat.appendChild(box);
 
   window.startVoice = () => {
-    const audio = document.getElementById("voiceNote");
-    audio.play();
+    music.pause(); // pause bg music
+    voice.play();
 
     box.innerHTML = "Sun raha hai na…? 😌💖";
 
-    audio.onended = () => {
+    voice.onended = () => {
+      music.play().catch(()=>{}); // resume
       box.innerHTML = "Bas… ab samajh ja 😌💖";
       btn.disabled = false;
     };
