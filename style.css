@@ -102,6 +102,14 @@ body {
   box-shadow: 0 6px 18px rgba(255, 95, 134, 0.25);
 }
 
+.msg.left {
+  align-self: flex-start;
+}
+
+.msg.right {
+  align-self: flex-end;
+}
+
 .msg img {
   width: 100%;
   border-radius: 15px;
