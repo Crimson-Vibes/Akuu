@@ -1,313 +1,162 @@
-// ================== AOS ==================
-AOS.init({
-  duration: 800,
-  once: true
-});
+const chat = document.getElementById("chatBody");
+const btn = document.getElementById("nextBtn");
+const status = document.getElementById("status");
 
-// ================== ELEMENTS ==================
-const timerEl = document.getElementById("intro-timer");
-const revealBtn = document.getElementById("revealBtn");
-const loadingScreen = document.getElementById("loading");
-const music = document.getElementById("birthdayMusic");
-const heartContainer = document.querySelector('.hearts');
-const balloonArea = document.getElementById('balloons');
+let step = 0;
 
-let time = 5;
-let heartScore = 0;
-let heartInterval;
-let fallingWordsInterval;
+// 💌 FLOW
+const flow = [
+  { type: "msg", text: "TEXT TEXT 😌", side: "left" },
+  { type: "msg", text: "TEXT TEXT 😏", side: "right" },
+  { type: "msg", text: "Par ruk na… itna easily thodi na mil jayega sab 😏💖", side: "left" },
 
-// ================== PRELOAD AUDIO (IMPORTANT) ==================
-if (music) {
-  music.load();
+  { type: "game1" },
+
+  { type: "msg", text: "Dekha 😏 itna bhi easy nahi tha na", side: "left" },
+
+  { type: "game2" },
+
+  { type: "msg", text: "Hmm… thoda impress ho raha hu 😌", side: "right" },
+
+  { type: "game3" },
+
+  { type: "msg", text: "Theek hai… ab tu deserve karta hai aage ka surprise 💖", side: "left" },
+  { type: "msg", text: "TEXT TEXT 🥺💌", side: "left" }
+];
+
+btn.onclick = nextMessage;
+
+function nextMessage() {
+  if (step >= flow.length) return;
+
+  const item = flow[step];
+
+  if (item.type === "msg") typingEffect(item);
+  if (item.type === "game1") startMemory();
+  if (item.type === "game2") startTic();
+  if (item.type === "game3") startSPS();
+
+  step++;
 }
 
-// ================== LOADING COUNTDOWN ==================
-const countdown = setInterval(() => {
-  time--;
-  timerEl.innerText = time;
+// 💬 typing
+function typingEffect(item) {
+  status.innerText = "typing...";
+  btn.disabled = true;
 
-  if (time <= 0) {
-    clearInterval(countdown);
-    revealBtn.classList.remove("hidden");
-  }
-}, 1000);
+  setTimeout(() => {
+    const msg = document.createElement("div");
+    msg.className = "msg " + item.side;
+    msg.innerText = item.text;
+    chat.appendChild(msg);
+    chat.scrollTop = chat.scrollHeight;
 
-// ================== REVEAL BUTTON ==================
-revealBtn.addEventListener("click", () => {
-  // Fade out loading screen
-  loadingScreen.style.transition = "opacity 0.8s";
-  loadingScreen.style.opacity = "0";
-  setTimeout(() => { loadingScreen.style.display = "none"; }, 800);
-
-  // 🎵 PLAY MUSIC (FIXED)
-  if (music) {
-    music.volume = 0.5;
-
-    const playPromise = music.play();
-
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          console.log("Music playing 🎶");
-        })
-        .catch((error) => {
-          console.log("Autoplay blocked 😭", error);
-        });
-    }
-  }
-
-  // Confetti 🎉
-  confetti({
-    particleCount: 150,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
-
-  startHeartsAndBalloons();
-});
-
-// ================== HEARTS & BALLOONS ==================
-function startHeartsAndBalloons() {
-  setInterval(() => {
-    // HEART
-    const heart = document.createElement('span');
-    heart.textContent = '💖';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = Math.random() * 10 + 15 + 'px';
-    heart.style.animationDuration = Math.random() * 3 + 4 + 's';
-    heartContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-
-    // BALLOON
-    const b = document.createElement('span');
-    b.textContent = '🎈';
-    b.style.left = Math.random() * 100 + 'vw';
-    b.style.fontSize = Math.random() * 30 + 30 + 'px';
-    balloonArea.appendChild(b);
-    setTimeout(() => b.remove(), 13000);
-
-  }, 500);
+    status.innerText = "online";
+    btn.disabled = false;
+  }, 1000);
 }
 
-// ================== GAME 1: CATCH HEARTS ==================
-function startHeartGame() {
-  document.getElementById("gameIntro").style.display = "none";
-  document.getElementById("gameArea").style.display = "block";
+// ================= 🧠 MEMORY =================
+function startMemory() {
+  btn.disabled = true;
 
-  document.getElementById("gameTitle").innerText = "Game 1: Catch the Hearts 💖";
-  document.getElementById("gameMessage").innerText = "Jitne dil pakad sakti ho… utna pyaar milega 😏💘";
+  const box = document.createElement("div");
+  box.className = "game-box";
 
-  heartScore = 0;
+  const seq = ["🎂","🎉","💖"];
 
-  const box = document.getElementById("gameBox");
-  box.innerHTML = `<div id="gameScore">Score: 0 / 7</div>`;
+  box.innerHTML = `
+    <p>Arey arey… itni jaldi kya hai 😏<br><br>
+    Thoda dimag use karte hai pehle… yaad rakhna isse 💭</p>
+    <h3>${seq.join(" ")}</h3>
+  `;
 
-  clearInterval(heartInterval);
-  heartInterval = setInterval(spawnHeart, 900);
-}
+  chat.appendChild(box);
 
-function spawnHeart() {
-  const box = document.getElementById("gameBox");
+  setTimeout(() => {
+    box.innerHTML = `
+      <p>Ab sach sach bata… yaad hai ya bas acting kar raha hai? 😌</p>
+    ` + seq.sort(()=>Math.random()-0.5)
+      .map(e=>`<span class="choice" onclick="checkMem('${e}')">${e}</span>`).join("");
+  }, 2000);
 
-  const heart = document.createElement("span");
-  heart.innerText = "💖";
-  heart.classList.add("click-heart");
+  let i = 0;
 
-  heart.style.left = Math.random() * 85 + "%";
-  heart.style.top = Math.random() * 75 + "%";
-
-  heart.onclick = function () {
-    heart.remove();
-    heartScore++;
-
-    document.getElementById("gameScore").innerText =
-      "Score: " + heartScore + " / 7";
-
-    if (heartScore >= 7) {
-      clearInterval(heartInterval);
-
-      document.getElementById("gameMessage").innerText =
-       "Acha… saree ke fall sa match nahi kiya… par dil toh perfectly catch kar liya tumne 😌💖";
-
-      setTimeout(() => startBalloonGame(), 800);
+  window.checkMem = (e) => {
+    if (e === seq[i]) {
+      i++;
+      if (i === seq.length) {
+        box.innerHTML = "Ohooo 😏 itna smart kabse ho gaya? Theek hai… maan liya 💖";
+        btn.disabled = false;
+      }
+    } else {
+      box.innerHTML = "Areee 😭 itna bhi yaad nahi raha? Chal phirse try kar… main wait kar raha hu 😌";
+      setTimeout(startMemory, 1000);
     }
   };
-
-  box.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 3000);
 }
 
-// ================== GAME 2: FIND LUCKY BALLOON ==================
-function startBalloonGame() {
-  document.getElementById("gameTitle").innerText =
-    "Game 2: Find the Lucky Balloon 🎈";
+// ================= 🎂 TIC =================
+function startTic() {
+  btn.disabled = true;
 
-  document.getElementById("gameMessage").innerText =
-   "Ek hi sahi hai… dekhte hai tumhara guess kitna sahi hota hai 😏🎈";
+  const box = document.createElement("div");
+  box.className = "game-box";
 
-  const box = document.getElementById("gameBox");
-  box.innerHTML = "";
+  let board = ["","","","","","","","",""];
+  let turn = "🎂";
 
-  const lucky = Math.floor(Math.random() * 3);
+  box.innerHTML = `
+    <p>Chal dekhte hai… strategy hai ya sirf confidence 😏</p>
+  ` + board.map((_,i)=>
+    `<span class="choice" onclick="move(${i})">⬜</span>`
+  ).join("");
 
-  for (let i = 0; i < 3; i++) {
-    const balloon = document.createElement("div");
-    balloon.classList.add("choice-box");
-    balloon.innerText = "🎈";
+  chat.appendChild(box);
 
-    balloon.onclick = function () {
-      if (i === lucky) {
-        document.getElementById("gameMessage").innerText =
-        "Waah… intuition strong hai tumhara 😌✨";
+  window.move = (i) => {
+    if (board[i]) return;
+    board[i] = turn;
+    box.children[i+1].innerText = turn;
 
-        setTimeout(() => startBoxGame(), 800);
-      } else {
-        document.getElementById("gameMessage").innerText =
-         "Arre nahi 😭 firse try karo na…";
-      }
-    };
+    turn = turn==="🎂"?"🎉":"🎂";
 
-    box.appendChild(balloon);
-  }
+    if (board.every(x=>x)) {
+      box.innerHTML = "Hmmm… theek tha 😌 chal aage badhte hai 💖";
+      btn.disabled = false;
+    }
+  };
 }
 
-// ================== GAME 3: CATCH COMPLIMENTS ==================
-function startBoxGame() {
-  document.getElementById("gameTitle").innerText =
-    "Game 3: Catch the Compliments 💖";
+// ================= ✊ SPS =================
+function startSPS() {
+  btn.disabled = true;
 
-  document.getElementById("gameMessage").innerText =
-  "Sirf achhi cheezein choose karna… baaki sab ignore kar dena, jaise tum real life mein karti ho 😌💗";
+  const box = document.createElement("div");
+  box.className = "game-box";
 
-  const box = document.getElementById("gameBox");
-  box.innerHTML = "";
+  const arr = ["✊","📄","✂️"];
 
-  let score = 0;
-  let gameActive = true;
+  box.innerHTML = `
+    <p>Last test 😏<br>Dekhte hai luck bhi tera saath deta hai ya nahi</p>
+  ` + arr.map(e=>
+    `<span class="choice" onclick="play('${e}')">${e}</span>`
+  ).join("");
 
-  const goodWords = [
-    "Choco Puff 🍫",
-    "Gulabo 💐",
-    "Cutie Patootie 🫧",
-    "Apsara 💫",
-    "Sundari ✨"
-  ];
+  chat.appendChild(box);
 
-  const badWords = [
-    "Naagin 🐍",
-    "Badtameez 😏",
-    "Aafat ⚡",
-    "Chudail 👻"
-  ];
+  window.play = (u) => {
+    const c = arr[Math.floor(Math.random()*3)];
 
-  const scoreDisplay = document.createElement("div");
-  scoreDisplay.id = "scoreDisplay";
-  scoreDisplay.innerText = "Score: 0";
-
-  const gameArea = document.createElement("div");
-  gameArea.id = "catchGameArea";
-  gameArea.style.position = "relative";
-  gameArea.style.height = "300px";
-
-  box.appendChild(scoreDisplay);
-  box.appendChild(gameArea);
-
-  clearInterval(fallingWordsInterval);
-  fallingWordsInterval = setInterval(createFallingWord, 1000);
-
-  function createFallingWord() {
-    if (!gameActive) return;
-
-    const word = document.createElement("div");
-    word.classList.add("falling-word");
-
-    const isGood = Math.random() > 0.4;
-
-    word.innerText = isGood
-      ? goodWords[Math.floor(Math.random() * goodWords.length)]
-      : badWords[Math.floor(Math.random() * badWords.length)];
-
-    word.dataset.good = isGood;
-
-    word.style.left = Math.random() * 250 + "px";
-    word.style.top = "0px";
-
-    gameArea.appendChild(word);
-
-    let topPosition = 0;
-
-    const fallInterval = setInterval(() => {
-      if (!gameActive) {
-        clearInterval(fallInterval);
-        return;
-      }
-
-      topPosition += 1;
-      word.style.top = topPosition + "px";
-
-      if (topPosition > 260) {
-        word.remove();
-        clearInterval(fallInterval);
-      }
-    }, 20);
-
-    word.onclick = function () {
-      if (!gameActive) return;
-
-      if (word.dataset.good === "true") {
-        score++;
-      } else {
-        score = Math.max(0, score - 1);
-      }
-
-      scoreDisplay.innerText = "Score: " + score;
-
-      word.remove();
-      clearInterval(fallInterval);
-
-      if (score >= 10) {
-        gameActive = false;
-        clearInterval(fallingWordsInterval);
-
-        document.getElementById("gameMessage").innerText =
-    "Okay… maan gaye 😌💖 tumne sab pass kar liya… ab thodi der ke liye bakchodi side pe rakhte hain 💭";
-
-        setTimeout(() => unlockMainContent(), 1000);
-      }
-    };
-  }
-}
-
-
-// ================== UNLOCK MAIN CONTENT ==================
-function unlockMainContent() {
-  const mainContent = document.getElementById("mainContent");
-  const gameAreaCard = document.getElementById("gameArea");
-  const gameIntroCard = document.getElementById("gameIntro");
-
-  if (gameAreaCard) gameAreaCard.style.display = "none";
-  if (gameIntroCard) gameIntroCard.style.display = "none";
-
-  mainContent.style.display = "block";
-
-  setTimeout(() => {
-    mainContent.style.opacity = "1";
-    mainContent.style.pointerEvents = "auto";
-  }, 100);
-
-  const cards = mainContent.querySelectorAll(".card");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("show");
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  cards.forEach((card) => observer.observe(card));
+    if (
+      (u==="✊"&&c==="✂️")||
+      (u==="📄"&&c==="✊")||
+      (u==="✂️"&&c==="📄")
+    ) {
+      box.innerHTML = "Acha ji 😏 jeet bhi gaya… ab tu deserve karta hai surprise 💖";
+      btn.disabled = false;
+    } else {
+      box.innerHTML = "HAHA 😌 main jeet gaya… chal phirse try kar 😏";
+    }
+  };
 }
