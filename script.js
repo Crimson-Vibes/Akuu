@@ -228,8 +228,7 @@ mere hi paas wapas la deti hai 💭✨`,
 
 { type: "msg", text: "I Love youuu meri jaanemann...", side: "left" },
 
-{ type: "msg", text: "Muaaahhh 😘💋", side: "left" },
-{ type: "msg", text: "I LOVE YOU MOREE DIII 🥺", side: "RIGHT" },
+{ type: "msg", text: "Muaaahhh 😘💋", side: "left" }
 
 ]; 
 
