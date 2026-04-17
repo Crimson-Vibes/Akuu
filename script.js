@@ -1,149 +1,314 @@
-// ================= LOADING =================
-let t = 3;
-let timer = setInterval(() => {
-  document.getElementById("intro-timer").innerText = t;
-  t--;
-
-  if(t < 0){
-    clearInterval(timer);
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-    startGame1();
-  }
-},1000);
-
-// ================= GAME PROGRESSION =================
-let stage = 1;
-
-// ================= GAME 1: RPS =================
-function playRPS(user){
-
-  const choices = ["rock","paper","scissors"];
-  let bot = choices[Math.floor(Math.random()*3)];
-
-  if(user === bot){
-    document.getElementById("rpsResult").innerText = "Tie 😗 try again";
-    return;
-  }
-
-  let win =
-    (user==="rock" && bot==="scissors") ||
-    (user==="paper" && bot==="rock") ||
-    (user==="scissors" && bot==="paper");
-
-  if(win){
-    document.getElementById("rpsResult").innerText = "You win 🎉";
-    nextGame();
-  } else {
-    document.getElementById("rpsResult").innerText = "Computer wins 😏 try again";
-  }
+/* ================== CUSTOM FONTS ================== */
+@font-face {
+  font-family: 'LoftyGoals';
+  src: url('./LoftyGoals.ttf') format('truetype');
 }
 
-// ================= GAME 2: TIC TAC TOE =================
-let board = Array(9).fill("");
-
-function startGame1(){
-  buildBoard();
+@font-face {
+  font-family: 'Celestina';
+  src: url('./Celestina.otf') format('opentype');
 }
 
-function buildBoard(){
-  let b = document.getElementById("board");
-  b.innerHTML = "";
-
-  board.forEach((v,i)=>{
-    let cell = document.createElement("div");
-    cell.className="cell";
-    cell.onclick=()=>move(i);
-    cell.innerText=v;
-    b.appendChild(cell);
-  });
+@font-face {
+  font-family: 'StarChoco';
+  src: url('./StarChoco.ttf') format('truetype');
 }
 
-function move(i){
-  if(board[i] !== "") return;
-
-  board[i] = "X";
-  buildBoard();
-
-  if(checkWin("X")){
-    document.getElementById("tttResult").innerText="You win 💖";
-    setTimeout(nextGame,1000);
-    return;
-  }
-
-  let empty = board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
-  let bot = empty[Math.floor(Math.random()*empty.length)];
-  if(bot !== undefined) board[bot]="O";
-
-  buildBoard();
-
-  if(checkWin("O")){
-    board = Array(9).fill("");
-    buildBoard();
-    document.getElementById("tttResult").innerText="Computer wins 😭 try again";
-  }
+@font-face {
+  font-family: 'MinyaNouvelle';
+  src: url('./MinyaNouvelle.otf') format('opentype');
 }
 
-function checkWin(p){
-  const win=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8]];
-  return win.some(c=>c.every(i=>board[i]===p));
+/* ================== RESET ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// ================= GAME 3: HEART CLICK =================
-let score = 0;
-
-function startHeartGame(){
-  let area = document.getElementById("heartGame");
-
-  setInterval(()=>{
-    let h = document.createElement("div");
-    h.className="heart";
-    h.innerText="💖";
-
-    h.style.left=Math.random()*90+"%";
-    h.style.top="100%";
-
-    h.onclick=()=>{
-      score++;
-      document.getElementById("heartScore").innerText="Score: "+score;
-      h.remove();
-
-      if(score >= 10){
-        nextGame();
-      }
-    };
-
-    area.appendChild(h);
-
-    let fall = setInterval(()=>{
-      let top = parseInt(h.style.top);
-      if(top < -20){
-        h.remove();
-        clearInterval(fall);
-      } else {
-        h.style.top = (top-2)+"%";
-      }
-    },50);
-
-  },800);
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-// ================= GAME SWITCH =================
-function nextGame(){
-  stage++;
+/* ================== BODY ================== */
+body {
+  background: linear-gradient(to bottom, #2E1F74, #9A95ED, #DF6177, #E0A57D);
+  color: #2E1F74;
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: sunset 60s ease-in-out infinite;
+  font-family: 'Poppins', sans-serif;
+}
 
-  document.querySelectorAll(".game").forEach(g=>g.classList.add("hidden"));
+/* ================== LOADING SCREEN ================== */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #2E1F74, #9B87DB, #DF6177);
+  color: #ffffff;
+  background-size: 400% 400%;
+  animation: introGradient 20s ease infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-  if(stage===2){
-    document.getElementById("game2").classList.remove("hidden");
-  }
+@keyframes introGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  if(stage===3){
-    document.getElementById("game3").classList.remove("hidden");
-    startHeartGame();
-  }
+/* ✨ DRAMATIC TITLE */
+#loading h1 {
+  font-size: 3rem;
+  margin: 0;
+  font-family: 'MinyaNouvelle', cursive;
+  color: #FF4D6D;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
+  animation: glowPulse 2s infinite alternate;
+}
 
-  if(stage===4){
-    document.getElementById("final").classList.remove("hidden");
-  }
+@keyframes glowPulse {
+  from { text-shadow:0 0 8px #ffc0cb, 0 0 20px #ffd6e8; }
+  to { text-shadow:0 0 15px #ff9ec7, 0 0 40px #ffe4f0; }
+}
+
+#intro-timer {
+  font-size:5rem;
+  font-weight:bold;
+  color: #FF4D6D;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
+  animation:pulseTimer 1s infinite;
+}
+
+@keyframes pulseTimer { 
+  0%{transform:scale(1);} 
+  50%{transform:scale(1.2);} 
+  100%{transform:scale(1);} 
+}
+
+.hidden { display:none; }
+
+/* ================== BUTTON ================== */
+#revealBtn,
+button {
+  font-family: 'LoftyGoals', cursive;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #DF6177, #9A95ED);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#revealBtn {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  background: #ffb6c1;
+  box-shadow: 0 6px 15px rgba(255, 182, 193, 0.4);
+}
+
+button:hover,
+#revealBtn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #E07E7D, #B276C0);
+}
+
+/* ================== CARD ================== */
+.card {
+   background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 40px rgba(46, 31, 116, 0.25);
+  color: #2E1F74;
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  margin: 60px auto;
+  border-radius: 24px;
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  animation: popUp 0.6s ease;
+}
+
+/* ✨ DREAMY HEADINGS */
+.card h2 {
+  font-family: 'MinyaNouvelle', cursive;
+  color: #C9184A;
+  text-shadow: 0 0 8px rgba(154,149,237,0.4);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+/* 💌 BODY TEXT */
+.card p {
+  font-family: 'StarChoco', sans-serif;
+   color: #AA6091;
+}
+
+/* ================== HEARTS ================== */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hearts span {
+  position: absolute;
+  bottom: -40px;
+  animation: heartFloat linear forwards;
+}
+
+/* ================== BALLOONS ================== */
+#balloons span {
+  position: fixed;
+  bottom: -100px;
+  pointer-events: none;
+  animation: float 12s ease-in forwards;
+}
+
+/* ================== GAME BOX ================== */
+#gameBox {
+  position: relative;
+  height: 300px;
+   background: rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+/* ================== HEART GAME ================== */
+.click-heart {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.click-heart:hover {
+  transform: scale(1.2);
+}
+
+/* ================== FALLING WORD ================== */
+.falling-word {
+  position: absolute;
+  top: 0;
+  font-size: 1rem;
+  font-family: 'StarChoco', sans-serif;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+  color: #2E1F74;
+  box-shadow: 0 5px 15px rgba(46, 31, 116, 0.2);
+}
+
+.falling-word:hover {
+  transform: scale(1.1);
+}
+
+/* ================== SCORE ================== */
+#gameScore,
+#scoreDisplay {
+  font-family: 'LoftyGoals', cursive;
+  color: #2E1F74;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* ================== DIVIDER ================== */
+.heart-break {
+  font-family: 'LoftyGoals', cursive;
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  margin: 70px 0;
+  color: #C9184A;
+}
+
+/* ================== CHOICE BOX ================== */
+.choice-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 15px;
+  font-size: 40px;
+   background: #E0A57D;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.choice-box:hover {
+   background: #DF6177;
+  transform: scale(1.1);
+}
+
+/* ================== MAIN CONTENT ================== */
+#mainContent {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+#mainContent .card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#mainContent .card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================== IMAGE ================== */
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+  margin: 25px 0;
+  box-shadow: 0 12px 30px rgba(46, 31, 116, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 18px 40px rgba(46, 31, 116, 0.35);
+}
+
+/* ================== ANIMATIONS ================== */
+@keyframes heartFloat {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes float {
+  0% { opacity: 0; transform: translateY(0); }
+  20% { opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes popUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sunset {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
