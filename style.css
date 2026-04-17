@@ -78,6 +78,17 @@ body {
   flex: 1;
   padding: 15px;
   overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.msg.left {
+  align-self: flex-start;
+}
+
+.msg.right {
+  align-self: flex-end;
 }
 
 .msg {
@@ -102,13 +113,6 @@ body {
   box-shadow: 0 6px 18px rgba(255, 95, 134, 0.25);
 }
 
-.msg.left {
-  align-self: flex-start;
-}
-
-.msg.right {
-  align-self: flex-end;
-}
 
 .msg img {
   width: 100%;
@@ -131,27 +135,29 @@ button {
   color: white;
 }
 
-/* typing */
+/* typing base */
 .typing {
   display: flex;
   gap: 5px;
   align-items: center;
-  width: fit-content;
   padding: 10px 14px;
   border-radius: 18px;
+  width: fit-content;
+  max-width: 75%;
+  animation: pop 0.3s ease;
 }
 
-/* LEFT typing bubble */
-.left.typing {
+/* LEFT typing */
+.msg.left.typing {
+  align-self: flex-start;
   background: #7c7cff;
-  margin-right: auto;
   box-shadow: 0 6px 18px rgba(124, 124, 255, 0.25);
 }
 
-/* RIGHT typing bubble */
-.right.typing {
+/* RIGHT typing */
+.msg.right.typing {
+  align-self: flex-end;
   background: #ff5f86;
-  margin-left: auto;
   box-shadow: 0 6px 18px rgba(255, 95, 134, 0.25);
 }
 
@@ -164,13 +170,8 @@ button {
   animation: blink 1s infinite;
 }
 
-.typing span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
 
 /* animation */
 @keyframes blink {
