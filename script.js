@@ -87,9 +87,124 @@ const flow = [
 
 { type: "msg", text: "Roz karungi 😌💖", side: "right" },
 
-{ type: "msg", text: "Good… warna main khud yaad dilane aa jaungi 😏", side: "left" }
+{ type: "msg", text: "Good… warna main khud yaad dilane aa jaungi 😏", side: "left" },
 
-];
+{ type: "msg", text: "Accha sun… 😌", side: "left" },
+{ type: "msg", text: "Haan?", side: "right" },
+
+{ type: "msg", text: "Tu free hai na abhi?", side: "left" },
+{ type: "msg", text: "Haan bolo naa 😏", side: "right" },
+
+{ type: "msg", text: "Bas… kuch bolna tha", side: "left" },
+
+{ type: "msg", text: "Acha?? itna suspense kyun 😭", side: "right" },
+
+{ type: "msg", text: "Nahi matlab… aisa kuch special nahi", side: "left" },
+{ type: "msg", text: "Par thoda sa hai bhi 😌", side: "left" },
+
+{ type: "msg", text: "Ab bol bhi de 😭💖", side: "right" },
+
+{ type: "msg", text: "Kuch likha hai… tere liye", side: "left" },
+{ type: "msg", text: "Sirf tere liye 😌", side: "left" },
+
+{
+  type: "msg",
+  text: `Mere har shabd ka raasta  
+aakar tujh tak hi rukta hai  
+
+Jaise likhne se pehle hi  
+yeh tai ho jaata hai  
+ki inhe samajhne wali  
+sirf tu hi hogi  
+
+Main kabhi lafzon mein ulajh jaati hoon  
+kabhi khud se hi chhup jaati hoon  
+par tu…  
+tu har dafa mujhe dhoond leti hai  
+
+Bina sawaal kiye  
+bina wajah jaane  
+tu bas mere saath rehti hai  
+
+Maine kabhi kaha nahi  
+par har baar jab main likhti hoon  
+mere andar ek sukoon hota hai  
+ki tu padh legi  
+
+Aur shayad samajh bhi legi  
+woh sab  
+jo main keh nahi paati  
+
+Duniya ke liye yeh bas panktiyaan hai  
+par tu jaanti hai  
+inmein meri saansein basi hai  
+
+Aur tu…  
+har baar unhe itni sambhaal se chhooti hai  
+jaise main toot na jaun  
+
+Isliye  
+main sabko kuch bhi suna doon  
+par apni sach wali baat  
+sirf tujhe hi batati hoon  
+
+Kyuki tu sirf sunti nahi  
+tu sambhaal leti hai  
+
+Aur har baar  
+thoda sa mujhe  
+mere hi paas wapas la deti hai 😌💖`,
+  side: "left"
+},
+{ type: "msg", text: "Bas… itna hi tha 😌", side: "left" },
+{ type: "msg", text: "Par jo bhi tha… dil se tha 😌💖", side: "left" },
+ { type: "msg", text: "Thank youuu 😭💖 ", side: "right" },
+ { type: "msg", text: "I love youu diii ", side: "right" },
+   { type: "msg", text: "Ab mein chalti hoonnn...", side: "right" },
+{ type: "msg", text: "RUK JA 😭", side: "left" },
+{ type: "msg", text: "Behennn ek last cheez 😌💖", side: "left" },
+
+{ type: "msg", text: "Ab kya hua didii?? 😭", side: "right" },
+  { type: "msg", text: "Aaj rulaakar maanoge kya aap? 😭", side: "right" },
+{ type: "msg", text: "Ruk jaaaooo behennn.. 😭💖", side: "left" },
+{ type: "msg", text: "Sirf ek last baat", side: "left" },
+
+{ type: "msg", text: "Haan bolo di.. 😭", side: "right" },
+{ type: "msg", text: "Sun rahi hoon", side: "right" },
+{ type: "msg", text: "Happy Birthdayyy Meri Butterfly 💖", side: "left" },
+
+{ type: "msg", text: "Sach bolu… tujhe wish karna bas ek formality nahi lagta hai", side: "left" },
+{ type: "msg", text: "Infact kaafiii jyaada special feel hota hai 😌", side: "left" },
+{ type: "msg", text: "I guess tumhe dikh raha hei mera mehnat .. sirf tumhare liyeee..", side: "left" },
+{ type: "msg", text: "Aww 😭💖", side: "right" },
+{ type: "msg", text: "Tu na… sirf dost nahi hai meri", side: "left" },
+{ type: "msg", text: "Tu woh insaan hai jisse main sabse pehle sab kuch share karti hoon", side: "left" },
+{ type: "msg", text: "Especially jo main likhti hoon…", side: "left" },
+{ type: "msg", text: "Aur tu har baar itna genuinely sun leti hai na", side: "left" },
+{ type: "msg", text: "Ki sab kuch aur zyada special lagne lagta hai 💖", side: "left" },
+
+{ type: "msg", text: "Heheh 😌💅", side: "right" },
+
+{ type: "msg", text: "Sach mein… mujhe nahi pata main itna likh paati ya nahi", side: "left" },
+{ type: "msg", text: "Agar tu nahi hoti toh", side: "left" },
+
+{ type: "msg", text: "Tu sirf support nahi karti… tu feel karti hai", side: "left" },
+
+{ type: "msg", text: "Aur shayad isi liye…", side: "left" },
+{ type: "msg", text: "Tu meri favourite insaan hai 💖", side: "left" },
+{ type: "msg", text: "Stoppp 😭💖", side: "right" },
+{ type: "msg", text: "Isiliye… aaj ke din tu bas khush rehna", side: "left" },
+{ type: "msg", text: "Baaki sab handle ho jayega 😌", side: "left" },
+{ type: "msg", text: "Aur haan…", side: "left" },
+{ type: "msg", text: "Jitna tu mujhe appreciate karti hai na", side: "left" },
+{ type: "msg", text: "Usse kahin zyada pyaar aur appreciation tu deserve karti hai 💖", side: "left" },
+{ type: "msg", text: "Isiliye tumhare liye… 😌💖", side: "left" },
+{ type: "msg", text: "Biotech wali ho ke bhi main 😭🧪", side: "left" },
+{ type: "msg", text: "Apni CSE wali number 1 cutie ke liye coding kar rahi hoon 😏💻💖", side: "left" },
+{ type: "msg", text: "Itna sab mere liye 🥺", side: "right" },
+{ type: "msg", text: "Yusss… kyuki tu deserve karti hai meri jaanemann 💖", side: "left" },
+{ type: "msg", text: "Baaki baatein fir actual DM mein kar lenge 😌", side: "left" },
+{ type: "msg", text: "Love youuu… muaaahhh 😘💋💖", side: "left" }
 
 // 🎵 BUTTON CLICK
 btn.onclick = () => {
