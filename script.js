@@ -21,7 +21,7 @@ const flow = [
 { type: "msg", text: "Kyunkiii aaj merii cutie pieee ka bdayy heii !!!", side: "left" },
 
 { type: "msg", text: "Awwww 😭💖", side: "right" },
-{ type: "msg", text: "Tumhe yaad tha??", side: "right" },
+{ type: "msg", text: "Aapko yaad tha??", side: "right" },
 
 { type: "msg", text: "Obviouslyyy 😏 main itna careless nahi hu", side: "left" },
 { type: "msg", text: "Aur aaj ke liye maine kaafi kuch plan kiya hai", side: "left" },
@@ -51,10 +51,11 @@ const flow = [
 
 { type: "voice", src: "voice1.mp3" },
 
-{ type: "msg", text: "…yeh tumne khud record kiya?? 😭💖", side: "right" },
-{ type: "msg", text: "Tum na seriously… 😭", side: "right" },
+{ type: "msg", text: "…yeh aapne khud record kiya?? 😭💖", side: "right" },
+{ type: "msg", text: "Aap na seriously… 😭", side: "right" },
 
-{ type: "msg", text: "Bas… thoda sa effort 😌💖", side: "left" },
+{ type: "msg", text: "Bas… thoda sa efforts.. 😌💖", side: "left" },
+  { type: "msg", text: "Meri jaan ke liye 💖", side: "left" },
 
 { type: "msg", text: "Waise ek baat bolu… 😌", side: "left" },
 
@@ -66,22 +67,24 @@ const flow = [
 
 { type: "img", src: "https://lh3.googleusercontent.com/d/1H_Ktchha-71lEVaJ4-7eq1ZwWaImDYe_", side: "left" },
 
-{ type: "msg", text: "Ye wala toh main hu hi 😌💅", side: "right" },
+{ type: "msg", text: "Aap mujhsee jyaada sundar ho dii 😌💅", side: "right" },
 
+  { type: "msg", text: "Nahhh... tum mujhse 100x sundar hoo💅 ", side: "left" },
 { type: "msg", text: "Aur uss waqt na… mere dimaag mein bas ek hi cheez chalti hai 😏🎧", side: "left" },
 
-{ type: "msg", text: "Waittt… kyaa?? 👀", side: "right" },
+{ type: "msg", text: "Acchaa… kyaa?? 👀", side: "right" },
 
 { type: "voice", src: "voice2.mp3" },
 
 { type: "msg", text: "Ab samajh aaya main kya bolna chah rahi thi? 🥺💌", side: "left" },
 
 { type: "msg", text: "…haan 😭💖", side: "right" },
-{ type: "msg", text: "Tu na… alag hi hai 😭", side: "right" },
+{ type: "msg", text: "Yaarr aap bhi naaaa... 😭", side: "right" },
 
 { type: "msg", text: "Bas… aaj ke din tum bas khush rehna cutie 💖", side: "left" },
 
-{ type: "msg", text: "Already hoon 😌💖", side: "right" },
+{ type: "msg", text: "Already hoon..", side: "right" },
+{ type: "msg", text: "Aapki wajah se 💖 💗", side: "right" },
 
 { type: "msg", text: "Aur haan… thodi si yaad mujhe bhi kar lena 😏", side: "left" },
 
@@ -221,7 +224,7 @@ mere hi paas wapas la deti hai 😌💖`,
 
 { type: "msg", text: "Love youuu… muaaahhh 😘💋💖", side: "left" }
 
-]; // ✅ FIXED COMMA + SAFE CLOSE
+]; 
 
 btn.onclick = () => {
   if(!started){
