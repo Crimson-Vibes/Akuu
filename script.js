@@ -143,29 +143,36 @@ function showImage(item) {
 }
 
 // 🎧 VOICE
-function playVoice() {
+function playVoice(item) {
   btn.disabled = true;
 
   const box = document.createElement("div");
   box.className = "msg left";
 
-  box.innerHTML = `
-    <p>Ruk… isko dhyaan se sunna 😌🎧<br><br>
-    Skip mat karna… warna bura maan jaunga 😏</p>
-    <button onclick="startVoice()">Play ▶️</button>
-  `;
+  const playBtn = document.createElement("button");
+  playBtn.innerText = "Play ▶️";
 
+  const text = document.createElement("p");
+  text.innerText = "Sunna dhyaan se 😌🎧";
+
+  box.appendChild(text);
+  box.appendChild(playBtn);
   chat.appendChild(box);
+  chat.scrollTop = chat.scrollHeight;
 
-  window.startVoice = () => {
+  playBtn.onclick = () => {
     music.pause();
+
+    voice.src = item.src;
+    voice.currentTime = 0;
     voice.play();
 
-    box.innerHTML = "Sun raha hai na…? 😌💖";
+    text.innerText = "Sun rahi hai na…? 😌💖";
+    playBtn.style.display = "none";
 
     voice.onended = () => {
       music.play().catch(()=>{});
-      box.innerHTML = "Bas… ab samajh ja 😌💖";
+      text.innerText = "Bas… ab samajh ja 😌💖";
       btn.disabled = false;
     };
   };
