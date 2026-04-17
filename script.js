@@ -12,24 +12,29 @@ let step = 0;
 // 💬 FLOW
 const flow = [
   { type: "msg", text: "Aaj ka din thoda special hai… 😏", side: "left" },
+   { type: "msg", text: "Thoda nahi... Infact kaafii jyaadaa special hei", side: "left" },
+   { type: "msg", text: "Poocho Kyu??", side: "left" },
   { type: "msg", text: "Kyu? 😌", side: "right" },
-
+   { type: "msg", text: "Kyunkiii aaj merii cutie pieee ka bdayy heii !!!", side: "left" },
+   { type: "msg", text: "And I have a lot of things planned for youu cutieee", side: "left" },
+   { type: "msg", text: "Accchaaa... Kyaaa ??", side: "right" },
   { type: "msg", text: "Arey patience… sab ek saath thodi batate hai 💖", side: "left" },
-
-  { type: "msg", text: "Ye dekh… bilkul tu 😭💖", side: "left" },
-  { type: "img", src: "https://lh3.googleusercontent.com/d/YOUR_FILE_ID", side: "left" },
-
+ { type: "msg", text: "Soo.. are you readyyy ??", side: "left" },
+  { type: "msg", text: "Of course I'm ready", side: "right" },
+  { type: "msg", text: "First things first.. Yeh tere liye banayaa", side: "left" },
+  { type: "img", src: "https://lh3.googleusercontent.com/d/1tGXn3y0P2pEqkIKp_e2otT3Or6D8ZUVl", side: "left" },
+{ type: "msg", text: "Ufff Kitniii pyaari dikhti ho tum. Aur tumhari aakhein? Aaayee haayee..", side: "left" },
+  { type: "msg", text: "Yaar didi rulaaoge kyaaa ", side: "right" },
   { type: "msg", text: "Waise ek baat bolu… 😌", side: "left" },
   { type: "msg", text: "Kabhi kabhi tu thodi zyada hi acchi lagti hai 😏", side: "left" },
-
-  { type: "msg", text: "Par ruk… ek cheez sun pehle 😏🎧", side: "left" },
-
+  { type: "msg", text: "Like this...", side: "left" },
+ { type: "img", src: "https://lh3.googleusercontent.com/d/1H_Ktchha-71lEVaJ4-7eq1ZwWaImDYe_", side: "left" },
+  { type: "msg", text: "Aur uss wakt mere mann mein sirf yahi bajta hei 😏🎧", side: "left" },
   { type: "voice" },
-
-  { type: "msg", text: "Ab samajh aaya main kya bolna chah raha tha? 🥺💌", side: "left" },
-  { type: "msg", text: "Bas… aaj ke din tu bas khush rehna 💖", side: "right" },
-
-  { type: "msg", text: "Aur haan… thodi si yaad mujhe bhi kar lena 😏", side: "left" }
+  { type: "msg", text: "Ab samajh aaya main kya bolna chah rahi thi? 🥺💌", side: "left" },
+  { type: "msg", text: "Bas… aaj ke din tum bas khush rehna cutie 💖", side: "left" },
+  { type: "msg", text: "Aur haan… thodi si yaad mujhe bhi kar lena 😏", side: "left" },
+  { type: "msg", text: "I loveee your good morningg texts but mujhe kaafi saare storiess share karne hei cutieee", side: "left" }
 ];
 
 // 🎵 BUTTON CLICK
