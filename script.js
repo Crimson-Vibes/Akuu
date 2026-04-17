@@ -4,6 +4,9 @@ const status = document.getElementById("status");
 const voice = document.getElementById("voiceNote");
 const music = document.getElementById("bgMusic");
 
+const heartContainer = document.getElementById("hearts");
+const balloonArea = document.getElementById("balloons");
+
 let step = 0;
 
 // 💬 FLOW
@@ -14,7 +17,7 @@ const flow = [
   { type: "msg", text: "Arey patience… sab ek saath thodi batate hai 💖", side: "left" },
 
   { type: "msg", text: "Ye dekh… bilkul tu 😭💖", side: "left" },
-  { type: "img", src: "pic.gif", side: "left" },
+  { type: "img", src: "https://lh3.googleusercontent.com/d/YOUR_FILE_ID", side: "left" },
 
   { type: "msg", text: "Waise ek baat bolu… 😌", side: "left" },
   { type: "msg", text: "Kabhi kabhi tu thodi zyada hi acchi lagti hai 😏", side: "left" },
@@ -29,11 +32,12 @@ const flow = [
   { type: "msg", text: "Aur haan… thodi si yaad mujhe bhi kar lena 😏", side: "left" }
 ];
 
-// 🔥 IMPORTANT FIX
+// 🎵 BUTTON CLICK
 btn.onclick = () => {
   if (step === 0) {
     music.volume = 0.3;
     music.play().catch(()=>{});
+    startHeartsAndBalloons();
   }
   nextMessage();
 };
@@ -79,7 +83,7 @@ function showImage(item) {
   chat.scrollTop = chat.scrollHeight;
 }
 
-// 🎧 VOICE NOTE
+// 🎧 VOICE
 function playVoice() {
   btn.disabled = true;
 
@@ -95,15 +99,37 @@ function playVoice() {
   chat.appendChild(box);
 
   window.startVoice = () => {
-    music.pause(); // pause bg music
+    music.pause();
     voice.play();
 
     box.innerHTML = "Sun raha hai na…? 😌💖";
 
     voice.onended = () => {
-      music.play().catch(()=>{}); // resume
+      music.play().catch(()=>{});
       box.innerHTML = "Bas… ab samajh ja 😌💖";
       btn.disabled = false;
     };
   };
+}
+
+// 💖 HEARTS & 🎈 BALLOONS
+function startHeartsAndBalloons() {
+  setInterval(() => {
+
+    const heart = document.createElement('span');
+    heart.textContent = '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+    heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+    heartContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+
+    const b = document.createElement('span');
+    b.textContent = '🎈';
+    b.style.left = Math.random() * 100 + 'vw';
+    b.style.fontSize = Math.random() * 30 + 30 + 'px';
+    balloonArea.appendChild(b);
+    setTimeout(() => b.remove(), 13000);
+
+  }, 600);
 }
