@@ -21,7 +21,6 @@ body {
   opacity: 0.7;
 }
 
-/* CHAT BOX */
 .chat-container {
   width: 360px;
   height: 600px;
@@ -33,7 +32,6 @@ body {
   overflow: hidden;
 }
 
-/* HEADER */
 .chat-header {
   display: flex;
   align-items: center;
@@ -55,14 +53,12 @@ body {
   font-size: 12px;
 }
 
-/* CHAT BODY */
 .chat-body {
   flex: 1;
   padding: 15px;
   overflow-y: auto;
 }
 
-/* MESSAGES */
 .msg {
   max-width: 75%;
   padding: 10px 14px;
@@ -82,7 +78,6 @@ body {
   margin-left: auto;
 }
 
-/* GIF */
 .msg img {
   width: 100%;
   border-radius: 15px;
@@ -92,7 +87,6 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* BUTTON */
 .chat-footer {
   padding: 10px;
   text-align: center;
@@ -107,7 +101,6 @@ button {
   cursor: pointer;
 }
 
-/* ANIMATION */
 @keyframes pop {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
