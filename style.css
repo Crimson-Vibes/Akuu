@@ -1,0 +1,82 @@
+body {
+  margin:0;
+  font-family: sans-serif;
+  background: linear-gradient(135deg,#2E1F74,#DF6177);
+  color:white;
+}
+
+/* LOADING */
+#loading{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#1b1440;
+  z-index:9999;
+}
+
+#intro-timer{
+  font-size:60px;
+  margin-top:10px;
+}
+
+/* MAIN */
+#mainContent{
+  display:none;
+  padding:20px;
+}
+
+.card{
+  max-width:700px;
+  margin:auto;
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:20px;
+}
+
+/* games */
+.game{
+  margin-top:20px;
+  padding:15px;
+  border-radius:15px;
+  background:rgba(0,0,0,0.2);
+}
+
+.hidden{display:none;}
+
+/* Tic Tac Toe */
+#board{
+  display:grid;
+  grid-template-columns:repeat(3,80px);
+  gap:5px;
+  justify-content:center;
+  margin-top:10px;
+}
+
+.cell{
+  width:80px;
+  height:80px;
+  background:white;
+  color:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  cursor:pointer;
+}
+
+/* hearts game */
+#heartGame{
+  height:200px;
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,0.1);
+}
+
+.heart{
+  position:absolute;
+  font-size:25px;
+  cursor:pointer;
+}
