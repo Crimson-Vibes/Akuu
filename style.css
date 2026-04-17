@@ -13,7 +13,6 @@ body {
   background: #1a1a2e;
 }
 
-/* 🌈 BACKGROUND */
 .bg {
   position: fixed;
   inset: 0;
@@ -23,7 +22,6 @@ body {
   z-index: 0;
 }
 
-/* 💖 HEARTS & 🎈 BALLOONS */
 .hearts, #balloons {
   position: fixed;
   inset: 0;
@@ -43,7 +41,6 @@ body {
   animation: float 12s ease-in forwards;
 }
 
-/* 💬 CHAT */
 .chat-container {
   width: 360px;
   height: 600px;
@@ -54,10 +51,8 @@ body {
   flex-direction: column;
   overflow: hidden;
   z-index: 2;
-  position: relative;
 }
 
-/* HEADER */
 .chat-header {
   display: flex;
   align-items: center;
@@ -79,46 +74,39 @@ body {
   font-size: 12px;
 }
 
-/* BODY */
 .chat-body {
   flex: 1;
   padding: 15px;
   overflow-y: auto;
 }
 
-/* MESSAGES */
 .msg {
   max-width: 75%;
   padding: 10px 14px;
   margin: 8px 0;
   border-radius: 18px;
-  animation: pop 0.4s ease;
+  animation: pop 0.3s ease;
+  color: white;
 }
 
 .left {
   background: rgba(255,255,255,0.25);
-  color: #fff;
 }
 
 .right {
   background: #ff6f91;
-  color: white;
   margin-left: auto;
 }
 
-/* GIF */
 .msg img {
   width: 100%;
   border-radius: 15px;
   margin-top: 5px;
-
-  height: auto;             
-  max-height: 320px;       
-  object-fit: contain;      
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
 }
 
-/* BUTTON */
 .chat-footer {
   padding: 10px;
   text-align: center;
@@ -130,22 +118,40 @@ button {
   border-radius: 20px;
   background: linear-gradient(135deg, #ff6f91, #9A95ED);
   color: white;
-  cursor: pointer;
 }
 
-/* ANIMATIONS */
+/* typing indicator */
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%,100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
 @keyframes pop {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
 @keyframes heartFloat {
-  from { transform: translateY(0); opacity: 1; }
-  to   { transform: translateY(-110vh); opacity: 0; }
+  to { transform: translateY(-110vh); opacity: 0; }
 }
 
 @keyframes float {
-  0% { opacity: 0; transform: translateY(0); }
-  20% { opacity: 1; }
   100% { transform: translateY(-110vh); opacity: 0; }
 }
